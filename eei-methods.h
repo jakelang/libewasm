@@ -32,7 +32,7 @@ void getAddress(const uint32_t resultOffset);
  * @param addressOffset		Offset of address
  * @param[out] resultOffset	Offset to write balance
  */
-void getBalance(const uint32_t addressOffset, const uint32_t resultOffset);
+void getBalance(const struct evm_address *addressOffset, const struct evm_value *resultOffset);
 
 /*
  * getCaller:
@@ -40,7 +40,7 @@ void getBalance(const uint32_t addressOffset, const uint32_t resultOffset);
  *
  * @param[out] resultOffset	Offset to write address of caller
  */
-void getCaller(const uint32_t resultOffset);
+void getCaller(const struct evm_address *resultOffset);
 
 /*
  * getCallValue:
@@ -48,7 +48,7 @@ void getCaller(const uint32_t resultOffset);
  *
  * @param[out] resultOffset	Offset to write value to
  */
-void getCallValue(const uint32_t resultOffset);
+void getCallValue(const struct evm_value *resultOffset);
 
 /*
  * getCallDataSize:
@@ -84,7 +84,7 @@ uint32_t getCodeSize();
  *
  * @return			Size of code at address
  */
-uint32_t getExternalCodeSize(const uint32_t addressOffset);
+uint32_t getExternalCodeSize(const struct evm_address *addressOffset);
 
 /*
  * getTxOrigin:
@@ -93,7 +93,7 @@ uint32_t getExternalCodeSize(const uint32_t addressOffset);
  *
  * @param[out] resultOffset	Offset to write address
  */
-void getTxOrigin(const uint32_t resultOffset);
+void getTxOrigin(const struct evm_address *resultOffset);
 
 /*
  * getTxGasPrice:
@@ -101,7 +101,7 @@ void getTxOrigin(const uint32_t resultOffset);
  *
  * @param[out] valueOffset	Offset to write gas price
  */
-void getTxGasPrice(const uint32_t valueOffset);
+void getTxGasPrice(const struct evm_value *valueOffset);
 
 /*
  * getBlockHash:
@@ -110,7 +110,7 @@ void getTxGasPrice(const uint32_t valueOffset);
  * @param number		Number of block
  * @param[out] resultOffset	Offset to write block hash
  */
-void getBlockHash(const int64_t number, const uint32_t resultOffset);
+void getBlockHash(const int64_t number, const struct evm_uint256 *resultOffset);
 
 /*
  * getBlockCoinBase:
@@ -119,7 +119,7 @@ void getBlockHash(const int64_t number, const uint32_t resultOffset);
  *
  * @param[out] resultOffset	Offset to write beneficiary address
  */
-void getBlockCoinBase(const uint32_t resultOffset);
+void getBlockCoinBase(const struct evm_address *resultOffset);
 
 /*
  * getBlockDifficulty:
@@ -127,7 +127,7 @@ void getBlockCoinBase(const uint32_t resultOffset);
  *
  * @param[out] offset		Offset to write difficulty
  */
-void getBlockDifficulty(const uint32_t offset);
+void getBlockDifficulty(const struct evm_uint256 *offset);
 
 /*
  * getBlockNumber:
@@ -160,16 +160,16 @@ int64_t getBlockGasLimit();
  * @param pathOffset		Offset containing storage path
  * @param valueOffset		Offset containing value to store
  */
-void storageStore(const uint32_t pathOffset, const uint32_t valueOffset);
+void storageStore(const struct evm_uint256 *pathOffset, const struct evm_uint256 *valueOffset);
 
 /*
  * storageLoad:
  * Loads a 256-bit value from specified storage path
  *
  * @param pathOffset		Offset containing storage path
- * @param[out] resultOffset	Offset to write value
+ * @param[out] resultOffset	Offset to write storage value
  */
-void storageLoad(const uint32_t pathOffset, const uint32_t resultOffset);
+void storageLoad(const struct evm_uint256 *pathOffset, const struct evm_uint256 *resultOffset);
 
 /*
  * log:
@@ -183,13 +183,13 @@ void storageLoad(const uint32_t pathOffset, const uint32_t resultOffset);
  * @param topic3		Offset containing topic 3
  * @param topic4		Offset containing topic 4
  */
-void log(const uint32_t dataOffset,
+void log(const uint8_t *dataOffset,
 	 const uint32_t length,
 	 const uint32_t numberOfTopics,
-	 const uint32_t topic1,
-	 const uint32_t topic2,
-	 const uint32_t topic3,
-	 const uint32_t topic4);
+	 const struct evm_uint256 *topic1,
+	 const struct evm_uint256 *topic2,
+	 const struct evm_uint256 *topic3,
+	 const struct evm_uint256 *topic4);
 /*
  * callDataCopy:
  * Copies call/transaction input data to memory at specified offset
@@ -198,7 +198,7 @@ void log(const uint32_t dataOffset,
  * @param dataOffset		Offset within input data
  * @param dataLength		Length of data
  */
-void callDataCopy(const uint32_t resultOffset, 
+void callDataCopy(const uint8_t *resultOffset, 
 		  const uint32_t dataOffset, 
 		  const uint32_t dataLength);
 
@@ -210,7 +210,7 @@ void callDataCopy(const uint32_t resultOffset,
  * @param dataOffset		Offset within return data
  * @param length		Length of return data
  */
-void returnDataCopy(const uint32_t resultOffset,
+void returnDataCopy(const uint8_t *resultOffset,
 		    const uint32_t dataOffset,
 		    const uint32_t length);
 
@@ -222,7 +222,7 @@ void returnDataCopy(const uint32_t resultOffset,
  * @param codeOffset		Offset within code
  * @param length		Length of code
  */
-void codeCopy(const uint32_t resultOffset,
+void codeCopy(const uint8_t *resultOffset,
 	      const uint32_t codeOffset,
 	      const uint32_t length);
 
@@ -235,8 +235,8 @@ void codeCopy(const uint32_t resultOffset,
  * @param codeOffset		Offset within code
  * @param length		Length of code
  */
-void externalCodeCopy(const uint32_t addressOffset,
-		      const uint32_t resultOffset,
+void externalCodeCopy(const struct evm_address *addressOffset,
+		      const uint8_t *resultOffset,
 		      const uint32_t codeOffset,
 		      const uint32_t length);
 
@@ -255,9 +255,9 @@ void externalCodeCopy(const uint32_t addressOffset,
  * 					     2 on revert
  */
 uint32_t call(const uint64_t gas, 
-	      const uint32_t addressOffset, 
-	      const uint32_t valueOffset, 
-	      const uint32_t dataOffset, 
+	      const struct evm_address *addressOffset, 
+	      const struct evm_value *valueOffset, 
+	      const uint8_t *dataOffset, 
 	      const uint32_t dataLength);
 
 /*
@@ -275,9 +275,9 @@ uint32_t call(const uint64_t gas,
  * 					     2 on revert
  */
 uint32_t callCode(const uint64_t gas,
-		  const uint32_t addressOffset,
-		  const uint32_t valueOffset,
-		  const uint32_t dataOffset,
+		  const struct evm_address *addressOffset,
+		  const struct evm_value *valueOffset,
+		  const uint8_t *dataOffset,
 		  const uint32_t dataLength);
 /*
  * callDelegate:
@@ -294,8 +294,8 @@ uint32_t callCode(const uint64_t gas,
  * 					     2 on revert
  */
 uint32_t callDelegate(const uint64_t gas,
-		      const uint32_t addressOffset,
-		      const uint32_t dataOffset,
+		      const struct evm_address *addressOffset,
+		      const uint8_t *dataOffset,
 		      const uint32_t dataLength);
 
 /*
@@ -313,8 +313,8 @@ uint32_t callDelegate(const uint64_t gas,
  * 					     2 on revert
  */
 uint32_t callStatic(const uint64_t gas,
-		    const uint32_t addressOffset,
-		    const uint32_t dataOffset,
+		    const struct evm_address *addressOffset,
+		    const uint8_t *dataOffset,
 		    const uint32_t dataLength);
 
 /*
@@ -330,10 +330,10 @@ uint32_t callStatic(const uint64_t gas,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t create(const uint32_t valueOffset,
-		const uint32_t dataOffset,
+uint32_t create(const struct evm_value *valueOffset,
+		const uint8_t *dataOffset,
 		const uint32_t length,
-		const uint32_t resultOffset);
+		const struct evm_address *resultOffset);
 
 /*
  * return:
@@ -343,7 +343,7 @@ uint32_t create(const uint32_t valueOffset,
  * @param dataOffset		Offset containing return data
  * @param length		Length of return data
  */
-void _return(const uint32_t dataOffset, const uint32_t length);
+void _return(const uint8_t *dataOffset, const uint32_t length);
 
 /*
  * revert:
@@ -353,7 +353,7 @@ void _return(const uint32_t dataOffset, const uint32_t length);
  * @param dataOffset		Offset containing return data
  * @param length		Length of return data
  */
-void revert(const uint32_t dataOffset, const uint32_t length);
+void revert(const uint8_t *dataOffset, const uint32_t length);
 
 /*
  * selfDestruct:
@@ -362,6 +362,6 @@ void revert(const uint32_t dataOffset, const uint32_t length);
  *
  * @param addressOffset		Offset containing beneficiary address
  */
-void selfDestruct(const uint32_t addressOffset);
+void selfDestruct(const struct evm_address *addressOffset);
 
 #endif

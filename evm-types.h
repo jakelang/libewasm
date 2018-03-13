@@ -22,7 +22,7 @@ struct evm_address {
 /*
  * 128-bit unsigned integer type.
  *
- * Used for account balances.
+ * Used for ether values.
  */
 struct evm_value {
 	uint8_t bytes[16];
