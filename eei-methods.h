@@ -1,6 +1,7 @@
 #ifndef EEI_METHODS_H
 #define EEI_METHODS_H
 
+extern "C" {
 /*
  * useGas:
  * Subtracts a specified amount from the gas counter
@@ -363,5 +364,5 @@ void ethereum_revert(const uint8_t *dataOffset, const uint32_t length);
  * @param addressOffset		Offset containing beneficiary address
  */
 void ethereum_selfDestruct(const struct evm_address *addressOffset);
-
+}
 #endif
