@@ -1,5 +1,7 @@
-#ifndef EVM_TYPES_H
-#define EVM_TYPES_H
+#ifndef __EWASM_TYPES_H
+#define __EWASM_TYPES_H
+
+#include <stdint.h> /* typedefs for integer types */
 
 /*
  * 256-bit unsigned integer type.

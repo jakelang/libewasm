@@ -1,5 +1,7 @@
-#ifndef EEI_METHODS_H
-#define EEI_METHODS_H
+#ifndef __EWASM_EEI_H 
+#define __EWASM_EEI_H 
+
+#include <stdint.h> /* typedefs for integer types */
 
 #if defined __cplusplus
 extern "C" {
