@@ -1,9 +1,6 @@
 #ifndef EVM_TYPES_H
 #define EVM_TYPES_H
 
-#define __ewasm_i32 unsigned int
-#define __ewasm_i64 unsigned long long int
-
 /*
  * 256-bit unsigned integer type.
  *
