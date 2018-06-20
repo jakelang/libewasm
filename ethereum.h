@@ -1,7 +1,7 @@
 #ifndef __ETHEREUM_H
 #define __ETHEREUM_H
 
-#include <ewasm_types.h>
-#include <ewasm_eei.h>
+#include <ewasm-types.h>
+#include <ewasm-eei.h>
 
 #endif
