@@ -12,7 +12,7 @@ extern "C" {
  *
  * @param amount		Amount of gas to subtract
  */
-void eei_useGas(const uint64_t amount);
+void eei_useGas(uint64_t amount);
 
 /*
  * getGasLeft:
@@ -28,7 +28,7 @@ uint64_t eei_getGasLeft();
  *
  * @param[out] resultOffset	Offset to write executing address
  */
-void eei_getAddress(const uint32_t resultOffset);
+void eei_getAddress(uint32_t resultOffset);
 
 /*
  * getBalance:
@@ -37,7 +37,7 @@ void eei_getAddress(const uint32_t resultOffset);
  * @param addressOffset		Offset of address
  * @param[out] resultOffset	Offset to write balance
  */
-void eei_getBalance(const struct evm_address *addressOffset, const struct evm_uint128 *resultOffset);
+void eei_getBalance(struct evm_address *addressOffset, struct evm_uint128 *resultOffset);
 
 /*
  * getCaller:
@@ -45,7 +45,7 @@ void eei_getBalance(const struct evm_address *addressOffset, const struct evm_ui
  *
  * @param[out] resultOffset	Offset to write address of caller
  */
-void eei_getCaller(const struct evm_address *resultOffset);
+void eei_getCaller(struct evm_address *resultOffset);
 
 /*
  * getCallValue:
@@ -53,7 +53,7 @@ void eei_getCaller(const struct evm_address *resultOffset);
  *
  * @param[out] resultOffset	Offset to write value to
  */
-void eei_getCallValue(const struct evm_uint128 *resultOffset);
+void eei_getCallValue(struct evm_uint128 *resultOffset);
 
 /*
  * getCallDataSize:
@@ -89,7 +89,7 @@ uint32_t eei_getCodeSize();
  *
  * @return			Size of code at address
  */
-uint32_t eei_getExternalCodeSize(const struct evm_address *addressOffset);
+uint32_t eei_getExternalCodeSize(struct evm_address *addressOffset);
 
 /*
  * getTxOrigin:
@@ -98,7 +98,7 @@ uint32_t eei_getExternalCodeSize(const struct evm_address *addressOffset);
  *
  * @param[out] resultOffset	Offset to write address
  */
-void eei_getTxOrigin(const struct evm_address *resultOffset);
+void eei_getTxOrigin(struct evm_address *resultOffset);
 
 /*
  * getTxGasPrice:
@@ -106,7 +106,7 @@ void eei_getTxOrigin(const struct evm_address *resultOffset);
  *
  * @param[out] valueOffset	Offset to write gas price
  */
-void eei_getTxGasPrice(const struct evm_uint128 *valueOffset);
+void eei_getTxGasPrice(struct evm_uint128 *valueOffset);
 
 /*
  * getBlockHash:
@@ -115,7 +115,7 @@ void eei_getTxGasPrice(const struct evm_uint128 *valueOffset);
  * @param number		Number of block
  * @param[out] resultOffset	Offset to write block hash
  */
-void eei_getBlockHash(const int64_t number, const struct evm_uint256 *resultOffset);
+void eei_getBlockHash(int64_t number, struct evm_uint256 *resultOffset);
 
 /*
  * getBlockCoinBase:
@@ -124,7 +124,7 @@ void eei_getBlockHash(const int64_t number, const struct evm_uint256 *resultOffs
  *
  * @param[out] resultOffset	Offset to write beneficiary address
  */
-void eei_getBlockCoinBase(const struct evm_address *resultOffset);
+void eei_getBlockCoinBase(struct evm_address *resultOffset);
 
 /*
  * getBlockDifficulty:
@@ -132,7 +132,7 @@ void eei_getBlockCoinBase(const struct evm_address *resultOffset);
  *
  * @param[out] offset		Offset to write difficulty
  */
-void eei_getBlockDifficulty(const struct evm_uint256 *offset);
+void eei_getBlockDifficulty(struct evm_uint256 *offset);
 
 /*
  * getBlockNumber:
@@ -165,7 +165,7 @@ int64_t eei_getBlockGasLimit();
  * @param pathOffset		Offset containing storage path
  * @param valueOffset		Offset containing value to store
  */
-void eei_storageStore(const struct evm_uint256 *pathOffset, const struct evm_uint256 *valueOffset);
+void eei_storageStore(struct evm_uint256 *pathOffset, struct evm_uint256 *valueOffset);
 
 /*
  * storageLoad:
@@ -174,7 +174,7 @@ void eei_storageStore(const struct evm_uint256 *pathOffset, const struct evm_uin
  * @param pathOffset		Offset containing storage path
  * @param[out] resultOffset	Offset to write storage value
  */
-void eei_storageLoad(const struct evm_uint256 *pathOffset, const struct evm_uint256 *resultOffset);
+void eei_storageLoad(struct evm_uint256 *pathOffset, struct evm_uint256 *resultOffset);
 
 /*
  * log:
@@ -188,13 +188,13 @@ void eei_storageLoad(const struct evm_uint256 *pathOffset, const struct evm_uint
  * @param topic3		Offset containing topic 3
  * @param topic4		Offset containing topic 4
  */
-void eei_log(const uint8_t *dataOffset,
-	 const uint32_t length,
-	 const uint32_t numberOfTopics,
-	 const struct evm_uint256 *topic1,
-	 const struct evm_uint256 *topic2,
-	 const struct evm_uint256 *topic3,
-	 const struct evm_uint256 *topic4);
+void eei_log(uint8_t *dataOffset,
+	 uint32_t length,
+	 uint32_t numberOfTopics,
+	 struct evm_uint256 *topic1,
+	 struct evm_uint256 *topic2,
+	 struct evm_uint256 *topic3,
+	 struct evm_uint256 *topic4);
 /*
  * callDataCopy:
  * Copies call/transaction input data to memory at specified offset
@@ -203,9 +203,9 @@ void eei_log(const uint8_t *dataOffset,
  * @param dataOffset		Offset within input data
  * @param dataLength		Length of data
  */
-void eei_callDataCopy(const uint8_t *resultOffset, 
-		  const uint32_t dataOffset, 
-		  const uint32_t dataLength);
+void eei_callDataCopy(uint8_t *resultOffset, 
+		  uint32_t dataOffset, 
+		  uint32_t dataLength);
 
 /*
  * returnDataCopy:
@@ -215,9 +215,9 @@ void eei_callDataCopy(const uint8_t *resultOffset,
  * @param dataOffset		Offset within return data
  * @param length		Length of return data
  */
-void eei_returnDataCopy(const uint8_t *resultOffset,
-		    const uint32_t dataOffset,
-		    const uint32_t length);
+void eei_returnDataCopy(uint8_t *resultOffset,
+		    uint32_t dataOffset,
+		    uint32_t length);
 
 /*
  * codeCopy:
@@ -227,9 +227,9 @@ void eei_returnDataCopy(const uint8_t *resultOffset,
  * @param codeOffset		Offset within code
  * @param length		Length of code
  */
-void eei_codeCopy(const uint8_t *resultOffset,
-	      const uint32_t codeOffset,
-	      const uint32_t length);
+void eei_codeCopy(uint8_t *resultOffset,
+	      uint32_t codeOffset,
+	      uint32_t length);
 
 /*
  * externalCodeCopy:
@@ -240,10 +240,10 @@ void eei_codeCopy(const uint8_t *resultOffset,
  * @param codeOffset		Offset within code
  * @param length		Length of code
  */
-void eei_externalCodeCopy(const struct evm_address *addressOffset,
-		      const uint8_t *resultOffset,
-		      const uint32_t codeOffset,
-		      const uint32_t length);
+void eei_externalCodeCopy(struct evm_address *addressOffset,
+		      uint8_t *resultOffset,
+		      uint32_t codeOffset,
+		      uint32_t length);
 
 /*
  * call:
@@ -259,11 +259,11 @@ void eei_externalCodeCopy(const struct evm_address *addressOffset,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t eei_call(const uint64_t gas, 
-	      const struct evm_address *addressOffset, 
-	      const struct evm_uint128 *valueOffset, 
-	      const uint8_t *dataOffset, 
-	      const uint32_t dataLength);
+uint32_t eei_call(uint64_t gas, 
+	      struct evm_address *addressOffset, 
+	      struct evm_uint128 *valueOffset, 
+	      uint8_t *dataOffset, 
+	      uint32_t dataLength);
 
 /*
  * callCode:
@@ -279,11 +279,11 @@ uint32_t eei_call(const uint64_t gas,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t eei_callCode(const uint64_t gas,
-		  const struct evm_address *addressOffset,
-		  const struct evm_uint128 *valueOffset,
-		  const uint8_t *dataOffset,
-		  const uint32_t dataLength);
+uint32_t eei_callCode(uint64_t gas,
+		  struct evm_address *addressOffset,
+		  struct evm_uint128 *valueOffset,
+		  uint8_t *dataOffset,
+		  uint32_t dataLength);
 /*
  * callDelegate:
  * Message-calls current account with code of an alternative account,
@@ -298,10 +298,10 @@ uint32_t eei_callCode(const uint64_t gas,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t eei_callDelegate(const uint64_t gas,
-		      const struct evm_address *addressOffset,
-		      const uint8_t *dataOffset,
-		      const uint32_t dataLength);
+uint32_t eei_callDelegate(uint64_t gas,
+		      struct evm_address *addressOffset,
+		      uint8_t *dataOffset,
+		      uint32_t dataLength);
 
 /*
  * callStatic:
@@ -317,10 +317,10 @@ uint32_t eei_callDelegate(const uint64_t gas,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t eei_callStatic(const uint64_t gas,
-		    const struct evm_address *addressOffset,
-		    const uint8_t *dataOffset,
-		    const uint32_t dataLength);
+uint32_t eei_callStatic(uint64_t gas,
+		    struct evm_address *addressOffset,
+		    uint8_t *dataOffset,
+		    uint32_t dataLength);
 
 /*
  * create:
@@ -335,10 +335,10 @@ uint32_t eei_callStatic(const uint64_t gas,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t eei_create(const struct evm_uint128 *valueOffset,
-		const uint8_t *dataOffset,
-		const uint32_t length,
-		const struct evm_address *resultOffset);
+uint32_t eei_create(struct evm_uint128 *valueOffset,
+		uint8_t *dataOffset,
+		uint32_t length,
+		struct evm_address *resultOffset);
 
 /*
  * return:
@@ -348,7 +348,7 @@ uint32_t eei_create(const struct evm_uint128 *valueOffset,
  * @param dataOffset		Offset containing return data
  * @param length		Length of return data
  */
-void eei_return(const uint8_t *dataOffset, const uint32_t length);
+void eei_return(uint8_t *dataOffset, uint32_t length);
 
 /*
  * revert:
@@ -358,7 +358,7 @@ void eei_return(const uint8_t *dataOffset, const uint32_t length);
  * @param dataOffset		Offset containing return data
  * @param length		Length of return data
  */
-void eei_revert(const uint8_t *dataOffset, const uint32_t length);
+void eei_revert(uint8_t *dataOffset, uint32_t length);
 
 /*
  * selfDestruct:
@@ -367,7 +367,7 @@ void eei_revert(const uint8_t *dataOffset, const uint32_t length);
  *
  * @param addressOffset		Offset containing beneficiary address
  */
-void eei_selfDestruct(const struct evm_address *addressOffset);
+void eei_selfDestruct(struct evm_address *addressOffset);
 
 #if defined __cplusplus 
 }
