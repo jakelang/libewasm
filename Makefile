@@ -1,6 +1,6 @@
 HEADER_INSTALL_PATH = /usr/local/include
 
-HEADERS = ethereum.h ewasm-types.h ewasm-eei.h
+HEADERS = ethereum.h ewasm-types.h ewasm-eei.h ewasm-arith.h ewasm-bitwise.h
 
 all: install
 

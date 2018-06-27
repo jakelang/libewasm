@@ -5,7 +5,12 @@
 #include <ewasm-eei.h>
 
 #if defined __INCLUDE_ARITH_OPS
+#define __INCLUDE_BITWISE_OPS
 #include <ewasm-arith.h>
+#endif
+
+#if defined __INCLUDE_BITWISE_OPS
+#include <ewasm-bitwise.h>
 #endif
 
 #endif
