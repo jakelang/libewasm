@@ -12,7 +12,7 @@ extern "C" {
  *
  * @param amount		Amount of gas to subtract
  */
-void ethereum_useGas(const uint64_t amount);
+void eei_useGas(const uint64_t amount);
 
 /*
  * getGasLeft:
@@ -20,7 +20,7 @@ void ethereum_useGas(const uint64_t amount);
  *
  * @return			Gas remaining
  */
-uint64_t ethereum_getGasLeft();
+uint64_t eei_getGasLeft();
 
 /*
  * getAddress:
@@ -28,7 +28,7 @@ uint64_t ethereum_getGasLeft();
  *
  * @param[out] resultOffset	Offset to write executing address
  */
-void ethereum_getAddress(const uint32_t resultOffset);
+void eei_getAddress(const uint32_t resultOffset);
 
 /*
  * getBalance:
@@ -37,7 +37,7 @@ void ethereum_getAddress(const uint32_t resultOffset);
  * @param addressOffset		Offset of address
  * @param[out] resultOffset	Offset to write balance
  */
-void ethereum_getBalance(const struct evm_address *addressOffset, const struct evm_value *resultOffset);
+void eei_getBalance(const struct evm_address *addressOffset, const struct evm_value *resultOffset);
 
 /*
  * getCaller:
@@ -45,7 +45,7 @@ void ethereum_getBalance(const struct evm_address *addressOffset, const struct e
  *
  * @param[out] resultOffset	Offset to write address of caller
  */
-void ethereum_getCaller(const struct evm_address *resultOffset);
+void eei_getCaller(const struct evm_address *resultOffset);
 
 /*
  * getCallValue:
@@ -53,7 +53,7 @@ void ethereum_getCaller(const struct evm_address *resultOffset);
  *
  * @param[out] resultOffset	Offset to write value to
  */
-void ethereum_getCallValue(const struct evm_value *resultOffset);
+void eei_getCallValue(const struct evm_value *resultOffset);
 
 /*
  * getCallDataSize:
@@ -62,7 +62,7 @@ void ethereum_getCallValue(const struct evm_value *resultOffset);
  *
  * @return			Size of input data
  */
-uint32_t ethereum_getCallDataSize();
+uint32_t eei_getCallDataSize();
 
 /*
  * getReturnDataSize:
@@ -71,7 +71,7 @@ uint32_t ethereum_getCallDataSize();
  *
  * @return			Size of return data buffer
  */
-uint32_t ethereum_getReturnDataSize();
+uint32_t eei_getReturnDataSize();
 
 /*
  * getCodeSize:
@@ -79,7 +79,7 @@ uint32_t ethereum_getReturnDataSize();
  *
  * @return			Size of code
  */
-uint32_t ethereum_getCodeSize();
+uint32_t eei_getCodeSize();
 
 /*
  * getExternalCodeSize:
@@ -89,7 +89,7 @@ uint32_t ethereum_getCodeSize();
  *
  * @return			Size of code at address
  */
-uint32_t ethereum_getExternalCodeSize(const struct evm_address *addressOffset);
+uint32_t eei_getExternalCodeSize(const struct evm_address *addressOffset);
 
 /*
  * getTxOrigin:
@@ -98,7 +98,7 @@ uint32_t ethereum_getExternalCodeSize(const struct evm_address *addressOffset);
  *
  * @param[out] resultOffset	Offset to write address
  */
-void ethereum_getTxOrigin(const struct evm_address *resultOffset);
+void eei_getTxOrigin(const struct evm_address *resultOffset);
 
 /*
  * getTxGasPrice:
@@ -106,7 +106,7 @@ void ethereum_getTxOrigin(const struct evm_address *resultOffset);
  *
  * @param[out] valueOffset	Offset to write gas price
  */
-void ethereum_getTxGasPrice(const struct evm_value *valueOffset);
+void eei_getTxGasPrice(const struct evm_value *valueOffset);
 
 /*
  * getBlockHash:
@@ -115,7 +115,7 @@ void ethereum_getTxGasPrice(const struct evm_value *valueOffset);
  * @param number		Number of block
  * @param[out] resultOffset	Offset to write block hash
  */
-void ethereum_getBlockHash(const int64_t number, const struct evm_uint256 *resultOffset);
+void eei_getBlockHash(const int64_t number, const struct evm_uint256 *resultOffset);
 
 /*
  * getBlockCoinBase:
@@ -124,7 +124,7 @@ void ethereum_getBlockHash(const int64_t number, const struct evm_uint256 *resul
  *
  * @param[out] resultOffset	Offset to write beneficiary address
  */
-void ethereum_getBlockCoinBase(const struct evm_address *resultOffset);
+void eei_getBlockCoinBase(const struct evm_address *resultOffset);
 
 /*
  * getBlockDifficulty:
@@ -132,7 +132,7 @@ void ethereum_getBlockCoinBase(const struct evm_address *resultOffset);
  *
  * @param[out] offset		Offset to write difficulty
  */
-void ethereum_getBlockDifficulty(const struct evm_uint256 *offset);
+void eei_getBlockDifficulty(const struct evm_uint256 *offset);
 
 /*
  * getBlockNumber:
@@ -140,7 +140,7 @@ void ethereum_getBlockDifficulty(const struct evm_uint256 *offset);
  *
  * @return			Number of block
  */
-int64_t ethereum_getBlockNumber();
+int64_t eei_getBlockNumber();
 
 /*
  * getBlockTimeStamp:
@@ -148,7 +148,7 @@ int64_t ethereum_getBlockNumber();
  *
  * @return			Timestamp of block
  */
-int64_t ethereum_getBlockTimestamp();
+int64_t eei_getBlockTimestamp();
 
 /*
  * getBlockGasLimit:
@@ -156,7 +156,7 @@ int64_t ethereum_getBlockTimestamp();
  *
  * @return			Gas limit of block
  */
-int64_t ethereum_getBlockGasLimit();
+int64_t eei_getBlockGasLimit();
 
 /*
  * storageStore:
@@ -165,7 +165,7 @@ int64_t ethereum_getBlockGasLimit();
  * @param pathOffset		Offset containing storage path
  * @param valueOffset		Offset containing value to store
  */
-void ethereum_storageStore(const struct evm_uint256 *pathOffset, const struct evm_uint256 *valueOffset);
+void eei_storageStore(const struct evm_uint256 *pathOffset, const struct evm_uint256 *valueOffset);
 
 /*
  * storageLoad:
@@ -174,7 +174,7 @@ void ethereum_storageStore(const struct evm_uint256 *pathOffset, const struct ev
  * @param pathOffset		Offset containing storage path
  * @param[out] resultOffset	Offset to write storage value
  */
-void ethereum_storageLoad(const struct evm_uint256 *pathOffset, const struct evm_uint256 *resultOffset);
+void eei_storageLoad(const struct evm_uint256 *pathOffset, const struct evm_uint256 *resultOffset);
 
 /*
  * log:
@@ -188,7 +188,7 @@ void ethereum_storageLoad(const struct evm_uint256 *pathOffset, const struct evm
  * @param topic3		Offset containing topic 3
  * @param topic4		Offset containing topic 4
  */
-void ethereum_log(const uint8_t *dataOffset,
+void eei_log(const uint8_t *dataOffset,
 	 const uint32_t length,
 	 const uint32_t numberOfTopics,
 	 const struct evm_uint256 *topic1,
@@ -203,7 +203,7 @@ void ethereum_log(const uint8_t *dataOffset,
  * @param dataOffset		Offset within input data
  * @param dataLength		Length of data
  */
-void ethereum_callDataCopy(const uint8_t *resultOffset, 
+void eei_callDataCopy(const uint8_t *resultOffset, 
 		  const uint32_t dataOffset, 
 		  const uint32_t dataLength);
 
@@ -215,7 +215,7 @@ void ethereum_callDataCopy(const uint8_t *resultOffset,
  * @param dataOffset		Offset within return data
  * @param length		Length of return data
  */
-void ethereum_returnDataCopy(const uint8_t *resultOffset,
+void eei_returnDataCopy(const uint8_t *resultOffset,
 		    const uint32_t dataOffset,
 		    const uint32_t length);
 
@@ -227,7 +227,7 @@ void ethereum_returnDataCopy(const uint8_t *resultOffset,
  * @param codeOffset		Offset within code
  * @param length		Length of code
  */
-void ethereum_codeCopy(const uint8_t *resultOffset,
+void eei_codeCopy(const uint8_t *resultOffset,
 	      const uint32_t codeOffset,
 	      const uint32_t length);
 
@@ -240,7 +240,7 @@ void ethereum_codeCopy(const uint8_t *resultOffset,
  * @param codeOffset		Offset within code
  * @param length		Length of code
  */
-void ethereum_externalCodeCopy(const struct evm_address *addressOffset,
+void eei_externalCodeCopy(const struct evm_address *addressOffset,
 		      const uint8_t *resultOffset,
 		      const uint32_t codeOffset,
 		      const uint32_t length);
@@ -259,7 +259,7 @@ void ethereum_externalCodeCopy(const struct evm_address *addressOffset,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t ethereum_call(const uint64_t gas, 
+uint32_t eei_call(const uint64_t gas, 
 	      const struct evm_address *addressOffset, 
 	      const struct evm_value *valueOffset, 
 	      const uint8_t *dataOffset, 
@@ -279,7 +279,7 @@ uint32_t ethereum_call(const uint64_t gas,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t ethereum_callCode(const uint64_t gas,
+uint32_t eei_callCode(const uint64_t gas,
 		  const struct evm_address *addressOffset,
 		  const struct evm_value *valueOffset,
 		  const uint8_t *dataOffset,
@@ -298,7 +298,7 @@ uint32_t ethereum_callCode(const uint64_t gas,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t ethereum_callDelegate(const uint64_t gas,
+uint32_t eei_callDelegate(const uint64_t gas,
 		      const struct evm_address *addressOffset,
 		      const uint8_t *dataOffset,
 		      const uint32_t dataLength);
@@ -317,7 +317,7 @@ uint32_t ethereum_callDelegate(const uint64_t gas,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t ethereum_callStatic(const uint64_t gas,
+uint32_t eei_callStatic(const uint64_t gas,
 		    const struct evm_address *addressOffset,
 		    const uint8_t *dataOffset,
 		    const uint32_t dataLength);
@@ -335,7 +335,7 @@ uint32_t ethereum_callStatic(const uint64_t gas,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t ethereum_create(const struct evm_value *valueOffset,
+uint32_t eei_create(const struct evm_value *valueOffset,
 		const uint8_t *dataOffset,
 		const uint32_t length,
 		const struct evm_address *resultOffset);
@@ -348,7 +348,7 @@ uint32_t ethereum_create(const struct evm_value *valueOffset,
  * @param dataOffset		Offset containing return data
  * @param length		Length of return data
  */
-void ethereum_return(const uint8_t *dataOffset, const uint32_t length);
+void eei_return(const uint8_t *dataOffset, const uint32_t length);
 
 /*
  * revert:
@@ -358,7 +358,7 @@ void ethereum_return(const uint8_t *dataOffset, const uint32_t length);
  * @param dataOffset		Offset containing return data
  * @param length		Length of return data
  */
-void ethereum_revert(const uint8_t *dataOffset, const uint32_t length);
+void eei_revert(const uint8_t *dataOffset, const uint32_t length);
 
 /*
  * selfDestruct:
@@ -367,7 +367,7 @@ void ethereum_revert(const uint8_t *dataOffset, const uint32_t length);
  *
  * @param addressOffset		Offset containing beneficiary address
  */
-void ethereum_selfDestruct(const struct evm_address *addressOffset);
+void eei_selfDestruct(const struct evm_address *addressOffset);
 
 #if defined __cplusplus 
 }
