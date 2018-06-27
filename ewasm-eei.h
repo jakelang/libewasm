@@ -37,7 +37,7 @@ void eei_getAddress(const uint32_t resultOffset);
  * @param addressOffset		Offset of address
  * @param[out] resultOffset	Offset to write balance
  */
-void eei_getBalance(const struct evm_address *addressOffset, const struct evm_value *resultOffset);
+void eei_getBalance(const struct evm_address *addressOffset, const struct evm_uint128 *resultOffset);
 
 /*
  * getCaller:
@@ -53,7 +53,7 @@ void eei_getCaller(const struct evm_address *resultOffset);
  *
  * @param[out] resultOffset	Offset to write value to
  */
-void eei_getCallValue(const struct evm_value *resultOffset);
+void eei_getCallValue(const struct evm_uint128 *resultOffset);
 
 /*
  * getCallDataSize:
@@ -106,7 +106,7 @@ void eei_getTxOrigin(const struct evm_address *resultOffset);
  *
  * @param[out] valueOffset	Offset to write gas price
  */
-void eei_getTxGasPrice(const struct evm_value *valueOffset);
+void eei_getTxGasPrice(const struct evm_uint128 *valueOffset);
 
 /*
  * getBlockHash:
@@ -261,7 +261,7 @@ void eei_externalCodeCopy(const struct evm_address *addressOffset,
  */
 uint32_t eei_call(const uint64_t gas, 
 	      const struct evm_address *addressOffset, 
-	      const struct evm_value *valueOffset, 
+	      const struct evm_uint128 *valueOffset, 
 	      const uint8_t *dataOffset, 
 	      const uint32_t dataLength);
 
@@ -281,7 +281,7 @@ uint32_t eei_call(const uint64_t gas,
  */
 uint32_t eei_callCode(const uint64_t gas,
 		  const struct evm_address *addressOffset,
-		  const struct evm_value *valueOffset,
+		  const struct evm_uint128 *valueOffset,
 		  const uint8_t *dataOffset,
 		  const uint32_t dataLength);
 /*
@@ -335,7 +335,7 @@ uint32_t eei_callStatic(const uint64_t gas,
  * 					     1 on failure
  * 					     2 on revert
  */
-uint32_t eei_create(const struct evm_value *valueOffset,
+uint32_t eei_create(const struct evm_uint128 *valueOffset,
 		const uint8_t *dataOffset,
 		const uint32_t length,
 		const struct evm_address *resultOffset);

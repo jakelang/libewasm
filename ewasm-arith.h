@@ -30,7 +30,7 @@ add_uint256(struct evm_uint256 *dst, struct evm_uint256 *src)
  * @return	 Whether an overflow occurred
  */
 int
-add_uint128(struct evm_value *dst, struct evm_value *src)
+add_uint128(struct evm_uint128 *dst, struct evm_uint128 *src)
 {
 
 }

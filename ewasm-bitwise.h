@@ -80,39 +80,39 @@ not_uint256(struct evm_uint256 *a)
 }
 
 /*
- * Type-specific bitwise operations: evm_value
+ * Type-specific bitwise operations: evm_uint128
  */
-struct evm_value
-and_value(struct evm_value *a, struct evm_value *b)
+struct evm_uint128
+and_uint128(struct evm_uint128 *a, struct evm_uint128 *b)
 {
-	struct evm_value ret;
+	struct evm_uint128 ret;
 	ret = *a;
 	and_bytes(&ret, b, 16);
 	return ret;
 }
 
-struct evm_value
-or_value(struct evm_value *a, struct evm_value *b)
+struct evm_uint128
+or_uint128(struct evm_uint128 *a, struct evm_uint128 *b)
 {
-	struct evm_value ret;
+	struct evm_uint128 ret;
 	ret = *a;
 	or_bytes(&ret, b, 16);
 	return ret;
 }
 
-struct evm_value
-xor_value(struct evm_value *a, struct evm_value *b)
+struct evm_uint128
+xor_uint128(struct evm_uint128 *a, struct evm_uint128 *b)
 {
-	struct evm_value ret;
+	struct evm_uint128 ret;
 	ret = *a;
 	xor_bytes(&ret, b, 16);
 	return ret;
 }
 
-struct evm_value
-not_value(struct evm_value *a)
+struct evm_uint128
+not_uint128(struct evm_uint128 *a)
 {
-	struct evm_value ret;
+	struct evm_uint128 ret;
 	ret = *a;
 	not_bytes(&ret, 16);
 	return ret;

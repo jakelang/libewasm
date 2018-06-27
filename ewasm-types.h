@@ -26,7 +26,7 @@ struct evm_address {
  *
  * Used for ether values.
  */
-struct evm_value {
+struct evm_uint128 {
 	uint8_t bytes[16];
 };
 
