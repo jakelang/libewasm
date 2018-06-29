@@ -1,2 +1,2 @@
 # libewasm
-Libewasm is a C library created to assist contract programming in Ethereum WebAssembly (ewasm) format.
+libewasm is a C library for writing ewasm contracts. It includes declarations of EEI host functions, as well as useful types and operations thereon.
