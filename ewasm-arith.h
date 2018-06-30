@@ -1,6 +1,10 @@
 #ifndef __EWASM_ARITH_H
 #define __EWASM_ARITH_H
 
+#include <stdint.h> /* typedefs for integer types */
+
+#include <ewasm-types.h>
+
 /*
  * add_uint256:
  * Adds two unsigned 256-bit integers. Equivalent to dst += src.

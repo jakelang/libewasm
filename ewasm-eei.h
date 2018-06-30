@@ -3,9 +3,12 @@
 
 #include <stdint.h> /* typedefs for integer types */
 
+#include <ewasm-types.h>
+
 #if defined __cplusplus
 extern "C" {
 #endif
+
 /*
  * useGas:
  * Subtracts a specified amount from the gas counter
