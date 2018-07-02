@@ -12,13 +12,7 @@
 int 
 add_uint256(struct evm_uint256 *dst, struct evm_uint256 *src)
 {
-	size_t i, k, carry;
 
-	carry = 0;
-
-	for (i = 0; i < 32; ++i) {
-
-	}
 }
 
 /*
